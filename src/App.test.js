@@ -1,8 +1,23 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, waitFor } from "@testing-library/react";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import Home from "./container/Home";
+import Search from "./components/Search/Search";
+import SearchProvider from "./components/Search/SearchProvider";
+
+// test("renders <Home />", async () => {
+//     render(<Home />);
+
+//     const result = await waitFor(() => screen.getByText("delectus aut autem"));
+//     expect(result).toBeInTheDocument();
+// });
+
+test("renders <Search />", async () => {
+    render(
+        <SearchProvider>
+            <Search />
+        </SearchProvider>
+    );
+
+    const result = await waitFor(() => screen.getByText("delectus aut autem"));
+    expect(result).toBeInTheDocument();
 });
